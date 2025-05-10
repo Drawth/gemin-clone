@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+
+@layer base {
+  * {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+.img-default{
+    @apply w-5 mt-0.5;
+  }
+
+.logostyle{
+    @apply flex items-center gap-3 px-2 py-2 text-gray-600 cursor-pointer hover:bg-gray-200 rounded;
+}
+
+.custom-gradient-text {
+  background: -webkit-linear-gradient(16deg, #4b90ff, #ff5546);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.card{
+  @apply h-48 p-3.5 bg-[#f0f4f9] rounded relative cursor-pointer hover:bg-[#dfe4ea];
+}
+.card-img{
+  @apply w-9 p-1 absolute bg-white bottom-[10px] right-2.5;
+}
+.card-p{
+  @apply text-[#585858] text-base
+}

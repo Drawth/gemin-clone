@@ -5,21 +5,28 @@ export const Context = createContext();
 
 const ContextProvider = (props) => {
   const [input, setInput] = useState("");
-  const [recentPropmt, setRecentPropmt] = useState("");
-  const [prevPrompt, setPrevPrompt] = useState([]);
+  const [recentPrompt, setRecentPrompt] = useState("");
+  const [prevPrompts, setPrevPrompts] = useState([]);
   const [showResult, setShowResult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [resultData, setResultData] = useState();
 
-  const onSent = async (prompt) => {
-    await main(prompt);
+  const onSent = async () => {
+    setResultData("");
+    setLoading(true);
+    setShowResult(true);
+    setRecentPrompt(input);
+    const response = await main(input);
+    setResultData(response);
+    setLoading(false);
+    setInput("");
   };
-  onSent("atatürk kimdir");
-
   const contextValue = {
-    prevPrompt,
-    setPrevPrompt,
+    prevPrompts,
+    setPrevPrompts,
     showResult,
+    recentPrompt,
+    setRecentPrompt,
     loading,
     resultData,
     onSent,

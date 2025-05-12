@@ -30,3 +30,7 @@
 .card-p{
   @apply text-[#585858] text-base
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../../assets/assets";
 import "../../index.css";
+import { Context } from "../../context/Context";
 function Sidebar() {
   const [extended, setExtended] = useState(false);
+  const { onSent, prevPrompts, setRecentPrompt, newChsat } =
+    useContext(Context);
+
+  const loadPrompt = async (prompt) => {
+    await onSent(prompt);
+    setRecentPrompt(prompt);
+  };
 
   return (
     <div
@@ -20,7 +28,10 @@ function Sidebar() {
         />
 
         {/* New Chat */}
-        <div className="flex items-center gap-3 px-4 py-2 bg-[#e6eaf1] rounded-xl text-[18px] text-gray-600 cursor-pointer hover:bg-[#d6dae0] transition-colors duration-300 mx-2">
+        <div
+          onClick={() => newChat()}
+          className="flex items-center gap-3 px-4 py-2 bg-[#e6eaf1] rounded-xl text-[18px] text-gray-600 cursor-pointer hover:bg-[#d6dae0] transition-colors duration-300 mx-2"
+        >
           <img className="w-5" src={assets.plus_icon} alt="plus" />
           {extended && (
             <span className="whitespace-nowrap transition-opacity duration-300 opacity-100">
@@ -33,10 +44,17 @@ function Sidebar() {
         {extended && (
           <div className="mt-8 px-4 transition-all duration-300">
             <p className="mb-4 text-gray-500 font-medium">Recent</p>
-            <div className="flex items-center gap-3 py-2 cursor-pointer hover:bg-gray-200 rounded px-2 text-gray-600">
-              <img className="w-5" src={assets.message_icon} alt="msg" />
-              <p className="whitespace-nowrap">What is React...</p>
-            </div>
+            {prevPrompts.map((item, index) => {
+              return (
+                <div
+                  onClick={() => loadPrompt(item)}
+                  className="flex items-center gap-3 py-2 cursor-pointer hover:bg-gray-200 rounded px-2 text-gray-600"
+                >
+                  <img className="w-5" src={assets.message_icon} alt="msg" />
+                  <p className="whitespace-nowrap">{item.slice(0, 20)}...</p>
+                </div>
+              );
+            })}
           </div>
         )}
       </div>

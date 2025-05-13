@@ -34,3 +34,18 @@
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+.loader{
+  @apply rounded-sm border-0 bg-[#f6f7f8] bg-gradient-to-r from-[#9ed7ff] via-white to-[#9ed7ff] p-3 h-5
+}
+@keyframes loader {
+  0% {
+    background-position: -800px 0px;
+  }
+  100% {
+    background-position: 800px 0px;
+  }
+}
+
+.animate-loader {
+  animation: loader 2s linear infinite;
+}

@@ -73,7 +73,18 @@ function Main() {
                 alt=""
                 className="w-10 rounded-xl"
               />
-              <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+              {loading ? (
+                <div className="w-full flex flex-col gap-2.5">
+                  <hr className="loader animate-loader" />
+                  <hr className="loader  animate-loader" />
+                  <hr className="loader animate-loader" />
+                </div>
+              ) : (
+                <p
+                  dangerouslySetInnerHTML={{ __html: resultData }}
+                  className="text-[17px] font-light leading-[1.8]"
+                ></p>
+              )}
             </div>
           </div>
         )}

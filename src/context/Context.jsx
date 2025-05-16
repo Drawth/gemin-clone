@@ -22,19 +22,44 @@ const ContextProvider = (props) => {
     setLoading(false);
   };
 
-  const onSent = async (prompt) => {
+  // onSent'e ikinci parametre ekledik: shouldAdd (daha önce yoksa true)
+  const onSent = async (prompt, shouldAdd = true) => {
     setResultData("");
     setLoading(true);
     setShowResult(true);
-    setRecentPrompt(prompt);
-    setPrevPrompts((prev) => [...prev, prompt]);
-    const response = await main(prompt);
 
-    let responseArray = response.split(" ");
-    for (let index = 0; index < responseArray.length; index++) {
-      const nextWord = responseArray[index];
-      delayPara(index, nextWord + " ");
+    if (!prompt || prompt.trim() === "") {
+      alert("Lütfen bir prompt girin!");
+      setShowResult(false);
+      return;
     }
+
+    // Eğer bu prompt daha önce yoksa, prevPrompts'a ekle
+    if (shouldAdd) {
+      setPrevPrompts((prev) => [...prev, prompt]);
+      setRecentPrompt(prompt);
+    }
+
+    // API/fonksiyon çağrısı
+    const response = await main(prompt);
+    console.log("prompt:", prompt);
+    console.log("input:", input);
+
+    // Gelen cevabı parçalayıp göstermek için örnek
+    const responseArray = response.split(" ");
+    responseArray.forEach((word, i) => {
+      delayPara(i, word + " ");
+    });
+
+    // if (prompt !== undefined) {
+    //   response = await main(prompt);
+    //   setRecentPrompt(prompt);
+    // } else {
+    //   setPrevPrompts((prev) => [...prev, input]);
+    //   setRecentPrompt(input);
+    //   response = await main(input);
+    // }
+
     setLoading(false);
     setInput("");
   };

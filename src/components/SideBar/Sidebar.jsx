@@ -4,11 +4,15 @@ import "../../index.css";
 import { Context } from "../../context/Context";
 function Sidebar() {
   const [extended, setExtended] = useState(false);
-  const { onSent, prevPrompts, setRecentPrompt, newChsat } =
-    useContext(Context);
+  const { onSent, prevPrompts, setRecentPrompt, newChat } = useContext(Context);
 
   const loadPrompt = async (prompt) => {
-    await onSent(prompt);
+    // prompt daha önce gelmemişse onSent çağr, aksi halde direkt onSent'i yine çağırabilirsin
+    if (!prevPrompts.includes(prompt)) {
+      await onSent(prompt, true);
+    } else {
+      await onSent(prompt, false);
+    }
     setRecentPrompt(prompt);
   };
 
@@ -44,17 +48,16 @@ function Sidebar() {
         {extended && (
           <div className="mt-8 px-4 transition-all duration-300">
             <p className="mb-4 text-gray-500 font-medium">Recent</p>
-            {prevPrompts.map((item, index) => {
-              return (
-                <div
-                  onClick={() => loadPrompt(item)}
-                  className="flex items-center gap-3 py-2 cursor-pointer hover:bg-gray-200 rounded px-2 text-gray-600"
-                >
-                  <img className="w-5" src={assets.message_icon} alt="msg" />
-                  <p className="whitespace-nowrap">{item.slice(0, 20)}...</p>
-                </div>
-              );
-            })}
+            {prevPrompts.map((item, index) => (
+              <div
+                key={index}
+                onClick={() => loadPrompt(item)}
+                className="flex items-center gap-3 py-2 cursor-pointer hover:bg-gray-200 rounded px-2 text-gray-600"
+              >
+                <img className="w-5" src={assets.message_icon} alt="msg" />
+                <p className="whitespace-nowrap">{item.slice(0, 20)}...</p>
+              </div>
+            ))}
           </div>
         )}
       </div>

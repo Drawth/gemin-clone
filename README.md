@@ -8,7 +8,7 @@ Amaç, Gemini AI’nın bazı özelliklerini deneyimlemek ve modern frontend tek
 - React.js tabanlı hızlı ve interaktif arayüz
 - Tailwind CSS ile modern ve responsive tasarım
 - Kullanıcıdan metin prompt alarak API çağrısı yapabilme
-- Önceki promptları listeleyip yönetebilme
+- Önceki promptları listeleyebilme
 - Basit ve anlaşılır UI/UX
 
 ## 🛠 Kurulum

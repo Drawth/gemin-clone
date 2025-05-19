@@ -28,7 +28,7 @@ function Main() {
               </p>
               <p>How can I help you today? </p>
             </div>
-            <div className="grid gap-[15px] p-5 grid-cols-[repeat(auto-fill,minmax(180px,1fr))]">
+            <div className="hidden md:grid gap-[15px] p-5 grid-cols-[repeat(auto-fill,minmax(180px,1fr))]">
               <div className="card">
                 <p className="card-p">
                   Suggest beatiful places to see on an coming road trip
@@ -96,34 +96,26 @@ function Main() {
           }}
         >
           <div className="absolute bottom-[0] w-full max-w-[900px]  py-5 m-auto">
-            <div className="flex align-middle justify-between gap-5 bg-[#f0f4f9] px-2.5 py-2.5 rounded-3xl">
+            <div className="flex align-middle justify-between gap-5 bg-[#f0f4f9] px-2.5 py-2.5 rounded-3xl sm:m-5">
               <input
                 onChange={(e) => setInput(e.target.value)}
                 value={input}
-                className="flex-1 bg-transparent border-none outline-none p-2 text-base "
+                className="flex-1 bg-transparent border-none outline-none p-2 text-base"
                 type="text"
                 placeholder="Enter a prompt here"
               />
 
               <div className="flex items-center gap-3.5">
-                <img
-                  className="w-6 cursor-pointer "
-                  src={assets.gallery_icon}
-                  alt=""
-                />
-                <img
-                  className="w-6 cursor-pointer"
-                  src={assets.mic_icon}
-                  alt=""
-                />
-                <img
-                  onClick={() => {
-                    onSent(input);
-                  }}
-                  src={assets.send_icon}
-                  alt=""
-                  className="w-6 cursor-pointer"
-                />
+                {input ? (
+                  <img
+                    onClick={() => {
+                      onSent(input);
+                    }}
+                    src={assets.send_icon}
+                    alt=""
+                    className="w-6 cursor-pointer"
+                  />
+                ) : null}
               </div>
             </div>
             <p className="text-sm mx-5 my-auto text-center text-[#585858] font-light">

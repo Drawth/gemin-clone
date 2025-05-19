@@ -51,15 +51,6 @@ const ContextProvider = (props) => {
       delayPara(i, word + " ");
     });
 
-    // if (prompt !== undefined) {
-    //   response = await main(prompt);
-    //   setRecentPrompt(prompt);
-    // } else {
-    //   setPrevPrompts((prev) => [...prev, input]);
-    //   setRecentPrompt(input);
-    //   response = await main(input);
-    // }
-
     setLoading(false);
     setInput("");
   };

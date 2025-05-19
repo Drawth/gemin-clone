@@ -16,7 +16,7 @@ Amaç, Gemini AI’nın bazı özelliklerini deneyimlemek ve modern frontend tek
 Projeyi bilgisayarınıza klonlayıp çalıştırmak için:
 
 ```bash
-git clone https://github.com/kullaniciAdi/gemini-clone.git
+git clone https://github.com/gemini-clone/gemini-clone.git
 cd gemini-clone
 npm install
 npm run dev  # veya npm start

@@ -19,5 +19,5 @@ Projeyi bilgisayarınıza klonlayıp çalıştırmak için:
 git clone https://github.com/gemini-clone/gemini-clone.git
 cd gemini-clone
 npm install
-npm run dev  # veya npm start
+npm run dev 
 ```
